@@ -33,7 +33,7 @@ class Main extends Component {
             <div>
                 <div className="text-uppercase mt-2 mb-4">Updated on {this.state.time}</div>
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-8 col-md-3 mb-5">
                         <div className="d-flex align-items-start">
                             <span id="currentTemp">{this.props.weather.temp}</span>
                             {this.renderUnits()}
@@ -41,7 +41,7 @@ class Main extends Component {
                         <h4 className="text-center">{this.props.weather.label}</h4>
                     </div>
                     
-                    <div className="col-2">
+                    <div className="col-4 col-md-2">
                         <div className="d-flex justify-content-between">
                             <span>High</span>
                             <div className="d-flex">
@@ -57,7 +57,7 @@ class Main extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-3 d-flex flex-column align-items-center border rounded bg-light ml-5 p-2">
+                    <div className="col-12 col-md-3 d-flex flex-column align-items-center border rounded bg-light ml-md-5 p-2">
                         <div className="text-uppercase">{this.props.nextWeather.timeOfDay}</div>
                         <div className="text-uppercase">{this.props.nextWeather.label}</div>
                         <img src={this.props.nextWeather.image} />

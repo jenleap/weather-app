@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import L from 'leaflet';
+import icon from '../assets/img/marker-icon.png';
+import iconShadow from '../assets/img/marker-shadow.png';
 
 import { apiKey } from '../util/config';
 
@@ -14,7 +16,8 @@ class Map extends Component {
         let map = L.map('map').setView([this.props.location.lat, this.props.location.long], 5);
         this.setState({map: map}, () => {
             this.renderLayer("temp");
-        })
+        });
+        console.log(this.props.location);
     }
 
     onLayer = (e) => {
@@ -35,6 +38,11 @@ class Map extends Component {
             api_key: apiKey,
             layer: layer
         }).addTo(this.state.map);
+        let markerIcon = L.icon({
+            iconUrl: icon,
+            shadowUrl: iconShadow
+        });
+        L.marker([this.props.location.lat, this.props.location.long], {icon: markerIcon}).addTo(this.state.map);
     }
 
 

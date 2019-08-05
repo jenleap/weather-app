@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { setLocation, getWeather, getHourly, setUnits } from './actions/weather';
+import { setLocation, getWeather, getHourly, setUnits, getWeatherLocation } from './actions/weather';
 
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Main from './components/Main';
 import Hourly from './components/Hourly';
 import Map from './components/Map';
+import SearchBar from './components/common/SearchBar';
 
 class App extends Component {
 
   state = {
     view: "current",
-    location: ""
+    location: "",
+    query: ""
   }
 
   componentWillMount() {
@@ -77,10 +79,22 @@ class App extends Component {
     this.setState({view: e.target.value });
   }
 
+  onQueryChange = (e) => {
+    this.setState({query: e.target.value});
+  }
+
+  onSearch = () => {
+    this.props.getWeatherLocation(this.state.query, this.props.units, (name) => {
+      this.setState({location: name});
+    });
+    this.setState({query: ''});
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
+        <SearchBar query={this.state.query} onChange={this.onQueryChange} onSearch={this.onSearch} error={this.props.error} />
         <div className="container">
           <div className="d-flex justify-content-between mt-2 mb-2">
             <h2>{this.state.location}</h2>
@@ -109,8 +123,9 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
       units: state.weather.units,
-      location: state.weather.defaultLoc
+      location: state.weather.defaultLoc,
+      error: state.weather.error
   };
 }
 
-export default connect(mapStateToProps, { setLocation, getWeather, getHourly, setUnits })(App);
+export default connect(mapStateToProps, { setLocation, getWeather, getHourly, setUnits, getWeatherLocation })(App);

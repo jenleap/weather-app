@@ -1,11 +1,12 @@
-import { GET_WEATHER, SET_LOCATION, GET_HOURLY, SET_UNITS } from '../actions/types';
+import { GET_WEATHER, SET_LOCATION, GET_HOURLY, SET_UNITS, SET_ERROR } from '../actions/types';
 
 const INITIAL_STATE = {
     defaultLoc: '',
     weather: {},
     hourly: [],
     nextWeather: {},
-    units: 'metric'
+    units: 'metric',
+    error: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -31,6 +32,12 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 units: action.payload
+            }
+        case SET_ERROR:
+            console.log(action.payload);
+            return {
+                ...state,
+                error: action.payload
             }
         default:
             return state;

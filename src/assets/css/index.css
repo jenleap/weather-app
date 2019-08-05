@@ -4,7 +4,6 @@
 @import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap');
 
 
-
 header {
   color: white;
   display: flex;
@@ -28,6 +27,35 @@ h1 {
   font-size: 2em;
 }
 
+h4 {
+  width: 100px;
+}
+
+/* Search Bar */
+.form-inline {
+  margin-right: 22%;
+}
+
+.form-control {
+  display: inline-block;
+}
+
+.alert {
+  padding: 5px;
+  margin: 5px;
+}
+
+/* Main */
+#currentTemp {
+  font-size: 100px;
+  margin-top: -40px;
+}
+
+#degreeDiv {
+  margin-top: 40px;
+}
+
+/* Map */
 #map {
   height: 80vh;
 }
@@ -35,23 +63,3 @@ h1 {
 button:focus {
   outline: none;
 }
-
-#currentTemp {
-  font-size: 100px;
-  margin-top: -40px;
-}
-
-#currentWeather {
-  display: block;
-  margin: auto;
-}
-
-h4 {
-  width: 100px;
-}
-
-#degreeDiv {
-  margin-top: 40px;
-}
-
-

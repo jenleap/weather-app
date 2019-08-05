@@ -17,7 +17,7 @@ class Hourly extends Component {
                 <ul class="list-group mt-2">
                 {this.props.hourly.map(h => {
                     return (
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <li key={h.time} class="list-group-item d-flex justify-content-between align-items-center">
                             <div className="col-4">{h.time}</div>
                             <div>
                                 <span>{h.temp}</span>

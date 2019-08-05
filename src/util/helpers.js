@@ -1,5 +1,6 @@
-export const getWeatherImage = (weather) => {
+export const getWeatherImage = (weather, time) => {
     let imageNum = "";
+    let timeOfDay = "";
     switch(weather) {
         case "clear sky":
             imageNum = "01";
@@ -38,7 +39,12 @@ export const getWeatherImage = (weather) => {
             imageNum = "50";
             break;
     }
-    return `http://openweathermap.org/img/wn/${imageNum}d@2x.png`;
+   if (time < 6 || time > 20) {
+       timeOfDay = "n";
+   } else {
+       timeOfDay = "d";
+   }
+    return `http://openweathermap.org/img/wn/${imageNum}${timeOfDay}@2x.png`;
 };
 
 export const getTimeOfDay = (time) => {
