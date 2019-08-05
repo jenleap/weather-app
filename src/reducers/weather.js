@@ -2,14 +2,9 @@ import { GET_WEATHER, SET_LOCATION, GET_HOURLY, SET_UNITS } from '../actions/typ
 
 const INITIAL_STATE = {
     defaultLoc: '',
-    weather: {
-        locName: '',
-        temp: '',
-        high: '',
-        low: '',
-        description: '',
-        hourly: ''
-    },
+    weather: {},
+    hourly: [],
+    nextWeather: {},
     units: 'metric'
 };
 
@@ -26,9 +21,11 @@ export default (state = INITIAL_STATE, action) => {
                 defaultLoc: action.payload
             } 
         case GET_HOURLY:
+            console.log(action.payload);
             return {
                 ...state,
-                hourly: action.payload
+                hourly: action.payload.hourly,
+                nextWeather: action.payload.nextWeather
             }
         case SET_UNITS:
             return {

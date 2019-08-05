@@ -57,6 +57,16 @@ class Main extends Component {
                             </div>
                         </div>
                     </div>
+                    <div className="col-3 d-flex flex-column align-items-center border rounded bg-light ml-5 p-2">
+                        <div className="text-uppercase">{this.props.nextWeather.timeOfDay}</div>
+                        <div className="text-uppercase">{this.props.nextWeather.label}</div>
+                        <img src={this.props.nextWeather.image} />
+                        <div className="d-flex">
+                            <span>{this.props.nextWeather.temp}</span>
+                            {this.renderUnits()}
+                        </div>
+
+                    </div>
                 </div>
                 
                
@@ -69,6 +79,7 @@ class Main extends Component {
 function mapStateToProps(state) {
     return {
         weather: state.weather.weather,
+        nextWeather: state.weather.nextWeather,
         location: state.weather.defaultLoc,
         units: state.weather.units
     };

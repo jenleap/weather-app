@@ -40,3 +40,16 @@ export const getWeatherImage = (weather) => {
     }
     return `http://openweathermap.org/img/wn/${imageNum}d@2x.png`;
 };
+
+export const getTimeOfDay = (time) => {
+    switch(time) {
+        case 0:
+            return "overnight";
+        case 6:
+            return "morning";
+        case 12:
+            return "afternoon";
+        case 18:
+            return "evening";
+    }
+};

@@ -40,7 +40,7 @@ class App extends Component {
     switch(this.state.view) {
       case "current":
         return <Main />;
-      case "hourly":
+      case "3-hr":
         return <Hourly />;
       case "map":
         return <Map />;
@@ -50,7 +50,7 @@ class App extends Component {
   }
 
   renderNav = () => {
-      const buttons = ["current", "hourly", "map"];
+      const buttons = ["current", "3-hr", "map"];
 
       return buttons.map(b => {
         return (

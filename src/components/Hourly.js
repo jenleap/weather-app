@@ -36,7 +36,8 @@ class Hourly extends Component {
 
 function mapStateToProps(state) {
     return {
-        hourly: state.weather.hourly
+        hourly: state.weather.hourly,
+        units: state.weather.units
     };
 }
 

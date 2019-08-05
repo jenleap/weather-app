@@ -2,7 +2,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { GET_WEATHER, SET_LOCATION, GET_HOURLY, SET_UNITS } from './types';
 
-import { getWeatherImage } from '../util/helpers';
+import { getWeatherImage, getTimeOfDay } from '../util/helpers';
 import { apiKey } from '../util/config';
 
 const weatherUrl = "https://api.openweathermap.org/data/2.5/weather";
@@ -11,7 +11,6 @@ const hourlyUrl = "https://api.openweathermap.org/data/2.5/forecast";
 export const getWeather = (location, units, callback) => dispatch => {
     axios.get(`${weatherUrl}?lat=${location.lat}&lon=${location.long}&units=${units}&appid=${apiKey}`)
         .then((res) => {
-            console.log(res.data);
             callback(res.data.name);
             let weather = {
                 locName: res.data.name,
@@ -34,7 +33,7 @@ export const getWeather = (location, units, callback) => dispatch => {
 export const getHourly = (location, units) => dispatch => {
     axios.get(`${hourlyUrl}?lat=${location.lat}&lon=${location.long}&units=${units}&appid=${apiKey}`)
         .then((res) => {
-            console.log(res.data.list);
+            console.log(moment(res.data.list[0].dt_txt).hour());
             let hourly = res.data.list.map(h => {
                 return {
                     time: moment(h.dt_txt).format("dddd h:mm A"),
@@ -42,10 +41,23 @@ export const getHourly = (location, units) => dispatch => {
                     image: getWeatherImage(h.weather[0].description)
                 }
             });
-            console.log(hourly);
+            let filteredHourly = res.data.list.filter(l => {
+                return moment(l.dt_txt).hour() % 6 == 0;
+            });
+            let nextWeather = {
+                timeOfDay: getTimeOfDay(moment(filteredHourly[0].dt_txt).hour()),
+                day: moment(filteredHourly[0].dt_txt).format('dddd'),
+                temp: Math.round(filteredHourly[0].main.temp),
+                image: getWeatherImage(filteredHourly[0].weather[0].description),
+                label: filteredHourly[0].weather[0].main
+            }
+            
             dispatch({
                 type: GET_HOURLY,
-                payload: hourly
+                payload: {
+                    hourly,
+                    nextWeather
+                }
             });
         })
         .catch((err) => {
