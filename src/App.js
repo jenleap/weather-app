@@ -33,7 +33,11 @@ class App extends Component {
           this.props.getHourly(location, this.props.units);
       });
     } else {
-        console.log("Geolocation is not available.")
+        console.log("Geolocation is not available.");
+        this.props.getWeather(this.props.location, this.props.units, (name) => {
+          this.setState({location: name});
+        });
+        this.props.getHourly(this.props.location, this.props.units);
     }
   }
 
