@@ -1,0 +1,55 @@
+@import 'reset.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~leaflet/dist/leaflet.css';
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap');
+
+header {
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  height: 90px;
+}
+
+footer {
+  padding: 20px;
+  height: 70px;
+}
+
+.container {
+  max-width: 720px;
+  min-height: calc(100vh - 160px);
+}
+
+h1 {
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 2em;
+}
+
+#map {
+  height: 80vh;
+}
+
+button:focus {
+  outline: none;
+}
+
+#currentTemp {
+  font-size: 100px;
+  margin-top: -40px;
+}
+
+#currentWeather {
+  display: block;
+  margin: auto;
+}
+
+h4 {
+  width: 100px;
+}
+
+#degreeDiv {
+  margin-top: 40px;
+}
+
+
