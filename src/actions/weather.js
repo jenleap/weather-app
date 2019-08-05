@@ -26,14 +26,13 @@ export const getWeather = (location, units, callback) => dispatch => {
             });
         })
         .catch((err) => {
-            console.log(err)
+            console.log("Error")
         });
 };
 
 export const getHourly = (location, units) => dispatch => {
     axios.get(`${hourlyUrl}?lat=${location.lat}&lon=${location.long}&units=${units}&appid=${apiKey}`)
         .then((res) => {
-            console.log(moment(res.data.list[0].dt_txt).hour());
             let hourly = res.data.list.map(h => {
                 return {
                     time: moment(h.dt_txt).format("dddd h:mm A"),
@@ -61,7 +60,7 @@ export const getHourly = (location, units) => dispatch => {
             });
         })
         .catch((err) => {
-            console.log(err)
+            console.log("Error")
         });
 }
 

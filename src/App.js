@@ -22,7 +22,6 @@ class App extends Component {
     if ("geolocation" in navigator) {
       console.log("Geolocation is available.");
       navigator.geolocation.getCurrentPosition((position) => {
-          //console.log(position.coords);
           let location = { 
             lat: position.coords.latitude, 
             long: position.coords.longitude 

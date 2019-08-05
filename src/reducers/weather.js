@@ -22,7 +22,6 @@ export default (state = INITIAL_STATE, action) => {
                 defaultLoc: action.payload
             } 
         case GET_HOURLY:
-            console.log(action.payload);
             return {
                 ...state,
                 hourly: action.payload.hourly,
@@ -34,7 +33,6 @@ export default (state = INITIAL_STATE, action) => {
                 units: action.payload
             }
         case SET_ERROR:
-            console.log(action.payload);
             return {
                 ...state,
                 error: action.payload

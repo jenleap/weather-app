@@ -17,7 +17,6 @@ class Map extends Component {
         this.setState({map: map}, () => {
             this.renderLayer("temp");
         });
-        console.log(this.props.location);
     }
 
     onLayer = (e) => {
