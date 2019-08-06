@@ -1,7 +1,10 @@
 import { GET_WEATHER, SET_LOCATION, GET_HOURLY, SET_UNITS, SET_ERROR } from '../actions/types';
 
 const INITIAL_STATE = {
-    defaultLoc: '',
+    defaultLoc: { 
+        lat: 43.6532, 
+        long: -79.3832 
+      },
     weather: {},
     hourly: [],
     nextWeather: {},
