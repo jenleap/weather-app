@@ -27,18 +27,23 @@ class App extends Component {
             long: position.coords.longitude 
           };
           this.props.setLocation(location);
-          this.props.getWeather(location, this.props.units, (name) => {
-            this.setState({location: name});
-          });
-          this.props.getHourly(location, this.props.units);
+          this.getLocation(location);
+      }, (error) => {
+          if (error.code == error.PERMISSION_DENIED) {
+            this.getLocation(this.props.location);
+          }
       });
     } else {
         console.log("Geolocation is not available.");
-        this.props.getWeather(this.props.location, this.props.units, (name) => {
-          this.setState({location: name});
-        });
-        this.props.getHourly(this.props.location, this.props.units);
+        this.getLocation(this.props.location);
     }
+  }
+
+  getLocation = (location) => {
+    this.props.getWeather(location, this.props.units, (name) => {
+      this.setState({location: name});
+    });
+    this.props.getHourly(location, this.props.units);
   }
 
   renderView = () => {

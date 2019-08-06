@@ -9,6 +9,7 @@ const weatherUrl = "https://api.openweathermap.org/data/2.5/weather";
 const hourlyUrl = "https://api.openweathermap.org/data/2.5/forecast";
 
 export const getWeather = (location, units, callback) => dispatch => {
+    console.log(location);
     axios.get(`${weatherUrl}?lat=${location.lat}&lon=${location.long}&units=${units}&appid=${apiKey}`)
         .then((res) => {
             callback(res.data.name);
